@@ -74,8 +74,6 @@ app.post('/ussd', (req, res) => {
             response = `END Name: ${student.fullName}\nBalance: MWK ${student.balance}`;
         }
 
-        // Send the response from here, since you can't use it outside
-        res.send(response);
         })
         .catch(err => {
         console.error('Error fetching student:', err);

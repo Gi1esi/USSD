@@ -65,9 +65,9 @@ app.post('/ussd', (req, res) => {
         }  
 
     } else if(dataarray[1] != '' && dataarray[0] == '2'){
-        const registration_number = '2021/1234';
+        const registration_number = dataarray[1];
         const student = Student.findOne({ studentId: registration_number });
-
+        console.log(student);
         if (!student) {
             response = `CON Registration number not found
         `;

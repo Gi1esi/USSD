@@ -69,17 +69,18 @@ app.post('/ussd', (req, res) => {
          Student.findOne({ studentId: registration_number })
         .then(student => {
             console.log(student)
-        if (!student) {
-            response = `CON Registration number not found`;
-        } else {
-            response = `END Name: ${student.fullName}\nBalance: MWK ${student.balance}`;
-        }
+             response = `END Name: ${student.fullName}\nBalance: MWK ${student.balance}`;
+        // if (!student) {
+        //     response = `CON Registration number not found`;
+        // } else {
+        //     response = `END Name: ${student.fullName}\nBalance: MWK ${student.balance}`;
+        // }
 
       
         })
         .catch(err => {
         console.error('Error fetching student:', err);
-        res.send('END An error occurred. Try again later.');
+        // res.send('END An error occurred. Try again later.');
         });
 
     }

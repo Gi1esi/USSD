@@ -65,7 +65,7 @@ app.post('/ussd', (req, res) => {
         }  
 
     } else if(dataarray[1] != '' && dataarray[0] == '2'){
-        const registration_number = dataarray[1];
+        const registration_number = '2021/1234';
         const student = Student.findOne({ studentId: registration_number });
 
         if (!student) {
@@ -91,6 +91,6 @@ app.get('/', (req, res) => {
 
 // Start the server
 app.listen(3002, () => {
-  console.log('Server started on port 3000');
+  console.log('Server started on port 3002');
 });
 

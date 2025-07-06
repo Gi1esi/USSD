@@ -68,12 +68,14 @@ app.post('/ussd', (req, res) => {
         const registration_number = dataarray[1];
          Student.findOne({ studentId: registration_number })
         .then(student => {
+            console.log(student)
         if (!student) {
             response = `CON Registration number not found`;
         } else {
             response = `END Name: ${student.fullName}\nBalance: MWK ${student.balance}`;
         }
 
+      
         })
         .catch(err => {
         console.error('Error fetching student:', err);

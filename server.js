@@ -66,16 +66,21 @@ app.post('/ussd', (req, res) => {
 
     } else if(dataarray[1] != '' && dataarray[0] == '2'){
         const registration_number = dataarray[1];
-        const student = Student.findOne({ studentId: registration_number });
-        console.log(student);
+         Student.findOne({ studentId: registration_number })
+        .then(student => {
         if (!student) {
-            response = `CON Registration number not found
-        `;
+            response = `CON Registration number not found`;
+        } else {
+            response = `END Name: ${student.fullName}\nBalance: MWK ${student.balance}`;
         }
 
-        else{
-            response = `END Name: ${student.fullName}\nBalance: ${student.balance}`;
-        }  
+        // Send the response from here, since you can't use it outside
+        res.send(response);
+        })
+        .catch(err => {
+        console.error('Error fetching student:', err);
+        res.send('END An error occurred. Try again later.');
+        });
 
     }
     // Send the response back to the API
